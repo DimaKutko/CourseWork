@@ -15,7 +15,7 @@ void initSem()
         int val;
         struct semid_ds *buf;
         ushort array[4];
-    } sem_args;
+    } semArgs;
     
     key_t key = ftok("semaphores", 'S');
     semId = semget(key, 4, IPC_CREAT | 0777);
@@ -24,18 +24,19 @@ void initSem()
     
     int i;
     
-    for(i = 3; i >= 0; --i){
-        sem_args.array[i] = 0;
+    for (i = 3; i >= 0; --i) {
+        semArgs.array[i] = 0;
         
-        if(i != RECEIVER && SOURCES & 1 << i){
-            sem_args.array[i] = 1;
+        if (i != RECEIVER && (SOURCES & 1 << (3 - i))) {
+            semArgs.array[i] = 1;
         }
     }
     
-    while ((i < 3 && sem_args.array[++i]) || i == RECEIVER);
-    sem_args.array[i] = 1;
+    while ((i < 3 && semArgs.array[++i]) || i == RECEIVER);
     
-    semctl(semId, 0, SETALL, sem_args.array);
+    semArgs.array[i] = 1;
+    
+    semctl(semId, 0, SETALL, semArgs.array);
     
     pSembuf.sem_op = -1;
     pSembuf.sem_flg = 0;

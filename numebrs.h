@@ -39,15 +39,12 @@ int* getFromFile(int srcNum){
     int i;
     char numbersStr[11];
     
-    printf("Read numbers from %s: ", fname);
-    
     for (i = 0; i < NUM_COUNT; i++) {
         fgets(numbersStr, 11, fp);
         numbers[i] = atoi(numbersStr);
-        printf(" %d", numbers[i]);
+//        printf(" %d", numbers[i]);
     }
     
-    printf("\n");
     
     fclose(fp);
     
@@ -75,17 +72,15 @@ int* getFromTerminal(int srcNum){
     }
     
     int i;
-    char numbersStr[11];
+    char numbersStr[6];
     
     printf("Enter numbers for %c:\n", arrName);
     
     for (i = 0; i < NUM_COUNT; i++) {
         printf("%c[%d] = ", arrName, i + 1);
-        fgets(numbersStr, 11, fp);
+        fgets(numbersStr, sizeof(numbersStr), fp);
         numbers[i] = atoi(numbersStr);
     }
-    
-    printf("\n");
     
     return numbers;
 }

@@ -37,12 +37,13 @@ void process4(){
 }
 
 int main(void) {
-    
-    initMsg();
     initSem();
+    initMsg();
     
     pid1 = getpid();
     pid2 = fork();
+    
+    if(pid2 == -1) error("ERROR init pid2");
     
     if(pid2 > 0){
         pid4 = fork();
@@ -52,6 +53,8 @@ int main(void) {
         pid4 > 0 ? process1() : process4();
         
         if(pid4 > 0){
+            while (wait(NULL) > 0);
+            
             disposeMsg();
             disposeSem();
         }
