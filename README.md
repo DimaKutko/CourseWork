@@ -4,4 +4,4 @@
 
 **Option 12**
 
-**Performed by a student of group 1BCS-25 Kutko Dmitry Alekseevich**
+**Performed by a student of group 2 BCS-25 Kutko Dmitry Alekseevich**
