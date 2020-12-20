@@ -1,6 +1,6 @@
 # CourseWork
  
-***Course work in the discipline "System software"(italic)***
+***Course work in the discipline "System software"***
 
 **Option 12**
 
