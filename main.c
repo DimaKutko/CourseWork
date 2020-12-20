@@ -14,25 +14,25 @@ pid_t pid1, pid2, pid3, pid4;
 
 // D - File1
 void process1(){
-    printf("PROCESS 1 \n");
+//    printf("PROCESS 1 \n");
     receiveNums(RECEIVER);
 }
 
 // A - File2
 void process2(){
-    printf("PROCESS 2 \n");
+//    printf("PROCESS 2 \n");
     sendNums(F_SENDER);
 }
 
 // B - Console
 void process3(){
-    printf("PROCESS 3 \n");
+//    printf("PROCESS 3 \n");
     sendNums(S_SENDER);
 }
 
 // C - File4
 void process4(){
-    printf("PROCESS 4 \n");
+//    printf("PROCESS 4 \n");
     sendNums(T_SENDER);
 }
 
@@ -60,7 +60,7 @@ int main(void) {
         
         if(pid3 == -1) error("ERROR init pid3");
         
-        pid4 > 0 ? process2() : process3();
+        pid3 > 0 ? process2() : process3();
     }
     
 }
