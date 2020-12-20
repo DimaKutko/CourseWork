@@ -101,7 +101,7 @@ void sendNumbersToFile(int srcNum, int numbers[]){
     
     char number[11];
     for(i = 0; i < NUM_COUNT; i++) {
-        sprintf(number, "%d", numbers[i]);
+        sprintf(number, "%d\n", numbers[i]);
         fputs(number, fp);
     }
     
