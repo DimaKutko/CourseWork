@@ -25,6 +25,21 @@ void disposeMsg(){
     msgctl(msgId, IPC_RMID, 0);
 }
 
+int findNextSrc(int srcNum){
+    switch (srcNum) {
+        case F_SENDER:
+            if((SOURCES & 1 << (3 - S_SENDER)) == 0){
+                return  S_SENDER;
+            }
+        case S_SENDER:
+            if((SOURCES & 1 << (3 - T_SENDER)) == 0){
+                return  T_SENDER;
+            }
+    }
+    
+    return  RECEIVER;
+}
+
 void sendNums(int srcNum){
     semwait(srcNum);
     
@@ -40,19 +55,9 @@ void sendNums(int srcNum){
         if(snd == -1) error("ERROR sendNums()");
     }
     
-    if(srcNum == S_SENDER) return;
+    if(SOURCES & 1 << (3 - srcNum) && srcNum != T_SENDER) return;
     
-    switch (srcNum) {
-        case F_SENDER:
-            sempost(S_SENDER);
-            break;
-        case S_SENDER:
-            sempost(T_SENDER);
-            break;
-        case T_SENDER:
-            sempost(RECEIVER);
-            break;
-    }
+    sempost(findNextSrc(srcNum));
 }
 
 void receiveNums(int srcNum){
@@ -69,10 +74,10 @@ void receiveNums(int srcNum){
             C[i] = atoi(msg[i].mtext);
     
             D[i] = (A[i] + B[i]) * C[i];
-            printf("(%d + %d) * %d = %d\n", A[i], B[i], C[i],D[i]);
+            printf("(%d + %d) * %d = %d\n", A[i], B[i], C[i], D[i]);
         }
     
-    if(SOURCES & 1 << srcNum){
+    if(SOURCES & 1 << (3 - srcNum)){
         sendNumbersToFile(srcNum, D);
     }
 }

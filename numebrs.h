@@ -91,7 +91,7 @@ int* getFromTerminal(int srcNum){
 }
 
 int* getNumbers(int srcNum){
-    if(SOURCES & 1 << srcNum){
+    if(SOURCES & 1 << (3 - srcNum)){
         return getFromFile(srcNum);
     }else{
         return getFromTerminal(srcNum);
