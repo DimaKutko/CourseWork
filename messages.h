@@ -3,11 +3,13 @@
 
 #include <stdio.h>
 #include <sys/msg.h>
+#include <unistd.h>
+#include <string.h>
+#include <sys/types.h>
+#include <sys/ipc.h>
 #include "semaphores.h"
 #include "config.h"
 #include "numebrs.h"
-#include <unistd.h>
-#include <string.h>
 
 struct {
     long mtype;
