@@ -42,9 +42,7 @@ int* getFromFile(int srcNum){
     for (i = 0; i < NUM_COUNT; i++) {
         fgets(numbersStr, 11, fp);
         numbers[i] = atoi(numbersStr);
-//        printf(" %d", numbers[i]);
     }
-    
     
     fclose(fp);
     

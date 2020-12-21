@@ -1,7 +1,6 @@
 #ifndef semaphores_h
 #define semaphores_h
 
-#pragma once
 #include <sys/sem.h>
 #include "errors.h"
 #include "config.h"
