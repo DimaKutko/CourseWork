@@ -9,7 +9,7 @@
 #include <sys/ipc.h>
 #include "semaphores.h"
 #include "config.h"
-#include "numebrs.h"
+#include "numbers.h"
 
 struct {
     long mtype;
